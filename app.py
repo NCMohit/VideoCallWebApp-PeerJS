@@ -62,8 +62,8 @@ def register():
 
 @app.route('/main')
 def main():
-	if("email" not in session):
-		flash("Please log in first to use the dashboard !")
+	if("user" not in session):
+		flash("Please log in first to use the application !")
 		return redirect(url_for("login"))
 	else:
 		return render_template('main.html')
