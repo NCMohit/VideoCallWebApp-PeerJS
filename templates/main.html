@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TavRn</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.png') }}" type="image/x-icon">  
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'tailwind.css') }}">
+	<style type="text/css">
+		body { 
+		   opacity: 0;
+		   transition: opacity 1s;
+		}
+	</style>
+	<script type="text/javascript">
+		window.transitionToPage = function(href) {
+		    document.querySelector('body').style.opacity = 0
+		    setTimeout(function() { 
+		        window.location.href = href
+		    }, 500)
+		}
+
+		document.addEventListener('DOMContentLoaded', function(event) {
+		    document.querySelector('body').style.opacity = 1
+		})	
+	</script>
+</head>
+<body style="background-image: linear-gradient(to lightgray, lightgray , lightblue);">
+	<div class="text-4xl text-red-400 font-display font-semibold w-10/12 md:w-11/12 mt-4 ml-4">TavRn <span class="float-right text-xl text-gray-500">Hello {{ session['user'] }}</span></div>
+	<h3 id="enter" class="mx-auto w-32 mt-4 md:mt-0">Enter Room ID: </h3>
+	<center><input id="room-input" type="text" class="w-64 text-lg py-2 px-2 rounded-lg border border-gray-500 focus:outline-none focus:border-indigo-500"></center><br>
+	<div class="flex justify-center">
+		<button id="button1" onclick="createRoom()" class="text-md text-white mt-2 border-2 px-4 py-2 rounded-lg w-24 md:w-32 bg-indigo-400 hover:bg-indigo-200">Create Room</button>
+		<button id="button2" onclick="joinRoom()" class="text-md text-white mt-2 border-2 px-4 py-2 mx-4 rounded-lg w-24 md:w-32 bg-indigo-400 hover:bg-indigo-200">Join Room</button>		
+	</div>
+	<p id="notification" hidden></p>
+	<video id="local-video" class="w-1/3 md:w-1/6 absolute right-0 border border-gray-500 z-10 mr-4" hidden></video>
+	<video id="remote-video" class="w-full mt-32 md:mt-0 md:w-2/3 absolute mx-auto border border-gray-500 md:ml-4" hidden></video>
+	
+</body>
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script src="{{ url_for('static', filename = 'script.js') }}"></script>
+</html>

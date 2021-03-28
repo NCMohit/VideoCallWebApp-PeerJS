@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TavRn</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.png') }}" type="image/x-icon">  
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'tailwind.css') }}">
+	<style type="text/css">
+		body { 
+		   opacity: 0;
+		   transition: opacity 1s;
+		}
+	</style>
+	<script type="text/javascript">
+		window.transitionToPage = function(href) {
+		    document.querySelector('body').style.opacity = 0
+		    setTimeout(function() { 
+		        window.location.href = href
+		    }, 500)
+		}
+
+		document.addEventListener('DOMContentLoaded', function(event) {
+		    document.querySelector('body').style.opacity = 1
+		})	
+	</script>
+</head>
+<body style="background-image: linear-gradient(to lightgray, lightgray , lightblue);">
+		<div class="text-4xl text-red-400 font-display font-semibold w-32 mx-auto mt-16">TavRn</div>
+		<div class="p-32 flex justify-center">
+			<a href="{{ url_for('login')}}"><button class="text-md text-white mt-2 border-2 px-4 py-2 rounded-lg w-24 md:w-32 bg-indigo-400 hover:bg-indigo-200">Login</button></a>
+			<a href="{{ url_for('register')}}"><button class="text-md text-white mt-2 border-2 px-4 py-2 mx-4 rounded-lg w-24 md:w-32 bg-indigo-400 hover:bg-indigo-200">Register</button></a>			
+		</div>
+
+</body>
+</html>
