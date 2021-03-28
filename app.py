@@ -62,7 +62,11 @@ def register():
 
 @app.route('/main')
 def main():
-	return render_template('main.html')
+	if("email" not in session):
+		flash("Please log in first to use the dashboard !")
+		return redirect(url_for("login"))
+	else:
+		return render_template('main.html')
 
 @app.route('/forgotpass')
 def forgotpass():
